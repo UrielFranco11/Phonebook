@@ -43,9 +43,20 @@ public class Phonebook {
 
     public void listContacts(){}
 
-    //public Contact searchContact(){}
+    public Contact searchContact(String name){
+        for (Contact c : contacts) {
+            if (c.getName().equalsIgnoreCase(name)) {
+                return c;
+            }
+        }
+            return null;
+    }
 
-    public boolean deleteContact(){
+    public boolean deleteContact(String name){
+contact toDelete = searchContact(name);
+if(toDelete != null){
+    return contacts.remove(toDelete);
+}
         return false;
     }
 
