@@ -2,7 +2,8 @@ package com.junkyard.phonebook;
 
 public class Phonebook {
     public String getContact(String contact){
-
+String name = contact.name
+        String telephone = contact.number
 
         return "buscando contacto de " + contact;
 
