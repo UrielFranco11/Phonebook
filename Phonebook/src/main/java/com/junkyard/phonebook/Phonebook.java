@@ -85,10 +85,6 @@ public class Phonebook {
         return maxSize;
     }
 
-    public Set<Contact> getContacts() {
-        return contacts;
-    }
-
     public void setContacts(HashSet<Contact> contacts) {
         this.contacts = contacts;
     }
