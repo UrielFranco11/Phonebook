@@ -1,6 +1,7 @@
 package com.junkyard.phonebook;
 
 import com.junkyard.contact.Contact;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -51,9 +52,20 @@ public class Phonebook {
         }
     }
 
-    //public Contact searchContact(){}
+    public Contact searchContact(String name){
+        for (Contact c : contacts) {
+            if (c.getName().equalsIgnoreCase(name)) {
+                return c;
+            }
+        }
+            return null;
+    }
 
-    public boolean deleteContact(){
+    public boolean deleteContact(String name){
+contact toDelete = searchContact(name);
+if(toDelete != null){
+    return contacts.remove(toDelete);
+}
         return false;
     }
 
@@ -71,6 +83,22 @@ public class Phonebook {
 
     public int getMaxSize() {
         return maxSize;
+    }
+
+    public Set<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(HashSet<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public boolean canAdd() {
+        return this.contacts.size() < this.maxSize;
+    }
+
+    public boolean checkContactExists(Contact contact) {
+        return contacts.contains(contact);
     }
 
 }
