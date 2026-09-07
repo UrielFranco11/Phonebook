@@ -83,6 +83,35 @@ public class PhonebookTest {
         assertTrue(phonebook.addContact(contact));
         assertEquals(1, phonebook.size());
     }
+
+    // HU-05: contactExists(String name)
+    @Test
+    void contactExists_shouldReturnTrue_whenContactExists() {
+        Phonebook phonebook = new Phonebook();
+        phonebook.addContact(new Contact("Uri", "5545455689"));
+        assertTrue(phonebook.contactExists("Uri"));
+    }
+
+    @Test
+    void contactExists_shouldReturnFalse_whenContactDoesNotExist() {
+        Phonebook phonebook = new Phonebook();
+        assertFalse(phonebook.contactExists("Luis"));
+    }
+
+    // HU-06: listContacts() -- imprime por consola, no retorna nada
+    @Test
+    void listContacts_shouldNotThrow_whenPhonebookIsEmpty() {
+        Phonebook phonebook = new Phonebook();
+        assertDoesNotThrow(phonebook::listContacts);
+    }
+
+    @Test
+    void listContacts_shouldNotThrow_whenPhonebookHasContacts() {
+        Phonebook phonebook = new Phonebook();
+        phonebook.addContact(new Contact("Uri", "5545455689"));
+        assertDoesNotThrow(phonebook::listContacts);
+    }
+
     //Consultar si la agenda está llena
     @Test
     public void isFullTestWhenAgendaIsFull() {

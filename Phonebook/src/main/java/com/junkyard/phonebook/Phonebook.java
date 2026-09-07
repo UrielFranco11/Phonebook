@@ -38,11 +38,19 @@ public class Phonebook {
         return contacts.add(contact);
     }
 
-    public boolean contactExists(){
-        return false;
+    public boolean contactExists(String name){
+        return contacts.contains(new Contact(name, null));
     }
 
-    public void listContacts(){}
+    public void listContacts(){
+        if (contacts.isEmpty()) {
+            System.out.println("The phonebook has no contacts.");
+            return;
+        }
+        for (Contact contact : contacts) {
+            System.out.println(contact.getName() + " - " + contact.getPhone());
+        }
+    }
 
     public Contact searchContact(String name){
         for (Contact c : contacts) {
