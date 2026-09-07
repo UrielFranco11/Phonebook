@@ -58,23 +58,23 @@ public class Phonebook {
                 return c;
             }
         }
-            return null;
+        return null;
     }
 
     public boolean deleteContact(String name){
-contact toDelete = searchContact(name);
-if(toDelete != null){
-    return contacts.remove(toDelete);
-}
+        Contact toDelete = searchContact(name);
+        if (toDelete != null) {
+            return contacts.remove(toDelete);
+        }
         return false;
     }
 
     public boolean phonebookIsFull(){
-        return false;
+        return contacts.size() >= maxSize;
     }
 
     public int spaceAvailable(){
-        return 0;
+        return maxSize - contacts.size();
     }
 
     public int size() {
