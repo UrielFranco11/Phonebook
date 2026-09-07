@@ -9,20 +9,17 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.junkyard.contact.Contact;
-import com.junkyard.phonebook.Phonebook;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 public class PhonebookTest {
     Phonebook testPhonebook;
     HashSet<Contact> testContacts;
 
     void fillPhonebook() {
         String[] names = {"A", "B", "C", "D", "F", "G", "H", "I", "J", "K"};
+        String[] phones = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+
 
         for(int i = 0; i < 10; i++) {
-            Contact contact = new Contact(names[i]);
+            Contact contact = new Contact(names[i], phones[i]);
             testContacts.add(contact);
         }
 
@@ -49,16 +46,18 @@ public class PhonebookTest {
 
     @Test
     void testDuplicateContacts() {
-        fail();
+        Contact testContact = new Contact("Test", "0");
+        testPhonebook.addContact(testContact);
+        assertFalse(testPhonebook.addContact(testContact));
     }
 
     @Test
     void checkExistentContact() {
-        Contact testContact = new Contact("Test");
-        testContacts.add(testContact);
-        testPhonebook.setContacts(testContacts);
+        Contact testContact = new Contact("Test", "0");
+        testPhonebook.addContact(testContact);
         assertTrue(testPhonebook.checkContactExists(testContact));
     }
+
     @Test
     void shouldCreatePhonebookWithDefaultSize() {
         Phonebook phonebook = new Phonebook();
